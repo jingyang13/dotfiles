@@ -1,0 +1,22 @@
+# 忽略秘钥和敏感信息（非常重要！）
+*.key
+*.pem
+.env
+.env.*
+!.env.example  # 允许保留模版
+
+# 忽略临时文件
+.DS_Store
+*.swp
+*~
+
+# 忽略特定的本地配置
+# 比如你可能想在不同机器上有不同的设置，可以创建 .local 结尾的文件并忽略
+*.local
+zshrc.local
+
+# 忽略安装过程中产生的日志或缓存
+node_modules/
+.cache/
+logs/
+
