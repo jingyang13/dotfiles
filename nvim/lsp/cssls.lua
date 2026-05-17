@@ -1,3 +1,5 @@
+--- npm i -g vscode-langservers-extracted
+
 return {
 	cmd = { "vscode-css-language-server", "--stdio" },
 	filetypes = { "css", "scss", "less" },

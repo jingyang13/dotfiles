@@ -1,0 +1,8 @@
+require("plugins.catppuccin")
+require("plugins.blink")
+require("plugins.conform")
+require("plugins.grug-far")
+require("plugins.markdown")
+require("plugins.snacks")
+require("plugins.treesitter")
+require("plugins.whichkey")

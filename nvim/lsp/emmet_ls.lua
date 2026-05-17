@@ -1,3 +1,5 @@
+-- npm i -g @olrtg/emmet-language-server
+
 return {
 	cmd = { "emmet-language-server", "--stdio" },
 	filetypes = {
@@ -19,3 +21,4 @@ return {
 	},
 	root_markers = { ".git" },
 }
+

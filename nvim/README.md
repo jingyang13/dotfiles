@@ -1,39 +1,36 @@
-```
-~/.config/nvim/
-├── init.lua                # Neovim 入口文件，相当于 main
-├── lazy-lock.json          # lazy.nvim 自动生成的插件锁定文件
-├── lsp/
-│   └── lua_ls.lua          # Lua Language Server（lua_ls）的单独配置
-├── lua/                    # 所有 Lua 模块目录（require 都从这里开始）
-│   ├── config/             # 核心配置（不直接属于某个插件）
-│   │   ├── basic.lua       # 基础设置
-│   │   ├── keymaps.lua     # 全局快捷键映射
-│   │   ├── lazy.lua        # lazy.nvim 本身的初始化与配置
-│   │   └── lsp.lua         # LSP 通用配置
-│   │
-│   └── plugins/            # 所有插件的配置（lazy.nvim 会扫描这里）
-│       ├── blink-cmp.lua   # 自动补全（blink.cmp）
-│       ├── bufferline.lua  # 顶部 Buffer 标签栏
-│       ├── colorscheme.lua # 主题配置
-│       ├── conform.lua     # 代码格式化工具
-│       ├── hop.lua         # 快速跳转插件（Hop）
-│       ├── Indent-Blankline.lua # 缩进辅助线（indent-blankline / ibl）
-│       ├── lualine.lua     # 状态栏（底部）
-│       ├── mason.lua       # LSP / DAP / Formatter 安装管理器
-│       ├── nvim-autopairs.lua # 自动补全括号、引号
-│       ├── nvim-colorizer.lua # 颜色高亮（#fff / rgb / hsl）
-│       ├── nvim-telescope.lua # 模糊搜索（文件 / grep / buffers）
-│       ├── nvim-tree.lua   # 文件树
-│       ├── nvim-treesitter.lua # 语法高亮 / 代码结构
-│       ├── nvim-ufo.lua    # 折叠增强（基于 Treesitter / LSP）
-│       ├── render-markdown.lua # Markdown 渲染（接近 Typora）
-│       └── dashboard.lua  # 启动页（Dashboard）
-```
-
-# `lsp` 所需的依赖
+# 依赖
 
 ```bash
-sudo pacman -S npm
-sudo pacman -S unzip
-sudo pacman -S unixodbc
+# nvim-treesitter
+sudo pacman -S tree-sitter-cli
 ```
+
+
+# 其他
+- LSP：知道你写的代码代表什么（变量类型、函数签名）
+- Tree-sitter：知道你写的代码长什么样（哪些是函数、哪些是注释）
+
+
+# 自动命令
+- 事件（Events）：触发时机（什么时候执行？）。
+- 模式（Pattern）：过滤条件（对哪些文件或缓冲区生效？）。
+- 动作（Action）：执行内容（具体要做什么？
+
+```Plaintext
+当发生 [事件]      且文件满足 [模式]     则自动执行 [动作]
+ (e.g., BufRead)      (e.g., *.md)       (e.g., setlocal wrap)
+```
+
+
+```lua
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+    pattern = "*.md",
+    callback = function()
+        vim.opt_local.wrap = true
+    end,
+})
+```
+- 事件：BufRead（读取文件到缓冲区）和 BufNewFile（创建新文件）。
+- 模式：*.md（只对 Markdown 文件生效）。
+- 动作：通过 callback 函数执行 Lua 代码，开启当前窗口的换行。
+

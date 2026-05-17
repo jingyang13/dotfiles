@@ -1,5 +1,10 @@
-require("config.basic")
-require("config.keymaps")
-require("config.lsp")
-require("config.lazy")
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+if vim.loader then
+    vim.loader.enable()
+end
+
+require("config")
+require("plugins")
 

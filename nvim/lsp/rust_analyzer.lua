@@ -1,3 +1,4 @@
+-- Install with: rustup component add rust-analyzer
 ---@brief
 ---
 --- https://github.com/rust-lang/rust-analyzer
@@ -163,3 +164,4 @@ return {
 		end, { desc = "Reload current cargo workspace" })
 	end,
 }
+
